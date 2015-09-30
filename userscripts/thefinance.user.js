@@ -24,7 +24,7 @@ $(function() {
     link.innerHTML += "~";
     var temp = $("<div></div>");
     temp.load(link.href + " .entry-content", function(){
-      var finalLink = temp.find("a").last();
+      var finalLink = temp.children("a").last();
       //console.log(finalLink);
       
       link.href = finalLink.attr("href");
