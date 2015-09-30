@@ -2,7 +2,7 @@
 // @name        thefinance skipper
 // @namespace   owq
 // @include     *thefinance.sg*
-// @version     1.1
+// @version     1.2
 // @downloadURL https://owq.github.io/userscripts/thefinance.user.js
 // @grant       none
 // @require       http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js
@@ -24,7 +24,7 @@ $(function() {
     link.innerHTML += "~";
     var temp = $("<div></div>");
     temp.load(link.href + " .entry-content", function(){
-      var finalLink = temp.children("a").last();
+      var finalLink = temp.children().first().children("a").last();
       //console.log(finalLink);
       
       link.href = finalLink.attr("href");
