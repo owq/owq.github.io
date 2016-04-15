@@ -4,7 +4,7 @@
 // @include     *google*finance*
 // @version     1
 // @grant       none
-// @require  https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js
+// @require  https://cdn.jsdelivr.net/momentjs/2.12.0/moment-with-locales.min.js
 // ==/UserScript==
 //https://gist.github.com/ghalimi/4669712.js 
 // Copyright (c) 2012 Sutoiku, Inc. (MIT License)
@@ -39,7 +39,7 @@ function XIRR(values, dates, guess) {
       result += values[i] / Math.pow(r, moment(dates[i]).diff(moment(dates[0]), 'days') / 365);
     }
     return result;
-  }
+  };
   // Calculates the first derivation
 
   var irrResultDeriv = function (values, dates, rate) {
@@ -50,7 +50,7 @@ function XIRR(values, dates, guess) {
       result -= frac * values[i] / Math.pow(r, frac + 1);
     }
     return result;
-  }
+  };
   // Check that values contains at least one positive value and one negative value
 
   var positive = false;
@@ -63,7 +63,7 @@ function XIRR(values, dates, guess) {
 
   if (!positive || !negative) return '#NUM!';
   // Initialize guess and resultRate
-  var guess = (typeof guess === 'undefined') ? 0.1 : guess;
+  guess = (typeof guess === 'undefined') ? 0.1 : guess;
   var resultRate = guess;
   // Set maximum epsilon for end of iteration
   var epsMax = 1e-10;
@@ -124,6 +124,7 @@ window.addEventListener('load', function load(event) {
     });
     cashflows.push(marketValue);
     dates.push(moment());
+    console.log('HERE');
     var xirr = XIRR(cashflows, dates);
     var netCashFlow = sumNum(cashflows);
     
