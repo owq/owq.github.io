@@ -4,7 +4,7 @@
 // @include     *google*finance*
 // @version     1
 // @grant       none
-// @require  https://cdn.jsdelivr.net/momentjs/2.12.0/moment-with-locales.min.js
+// @require  https://cdn.jsdelivr.net/momentjs/2.12.0/moment-with-locales.js
 // ==/UserScript==
 //https://gist.github.com/ghalimi/4669712.js 
 // Copyright (c) 2012 Sutoiku, Inc. (MIT License)
