@@ -17,6 +17,8 @@
     $(function() {
         var currEl;
         var heightPadding = 10;
+        var widthPadding = 10;
+        var divImage = $("#divImage");
 
         $(window).resize(function() {
             scrollToEl(currEl);
@@ -25,7 +27,11 @@
         function resizeEl(el) {
             if(el) {
                 var ht = document.documentElement.clientHeight - heightPadding;
-                el.find("img").height(ht);
+                var img = el.find("img");
+                var aspectRatio = img.prop("naturalHeight") / img.prop("naturalWidth");
+                var maxWidth = document.documentElement.clientWidth - divImage.offset().left - widthPadding;
+                var maxHeight = aspectRatio * maxWidth;
+                img.height(Math.min(ht, maxHeight));
             }
         }
 
@@ -56,7 +62,6 @@
             }
         }
 
-        var divImage = $("#divImage");
         var ps = divImage.find("p");
         ps.on("click", function() {
             setCurrEl($(this));
