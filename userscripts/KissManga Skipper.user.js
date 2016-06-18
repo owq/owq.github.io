@@ -11,7 +11,7 @@
 
 (function() {
     'use strict';
-    GM_addStyle("#divImage .select img { border: 2px solid blue;}");
+    GM_addStyle("#divImage .select img { box-shadow: 0px 0px 18px 3px #fff; }");
     //GM_addStyle("#divImage { display:flex; }");
 
     $(function() {
