@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         KissManga Skipper
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.3
 // @description  try to take over the world!
 // @author       You
 // @match        http://kissmanga.com/Manga/*
@@ -16,12 +16,26 @@
 
     $(function() {
         var currEl;
-        
+        var heightPadding = 10;
+
+        $(window).resize(function() {
+            scrollToEl(currEl);
+        });
+
+        function resizeEl(el) {
+            if(el) {
+                var ht = document.documentElement.clientHeight - heightPadding;
+                el.find("img").height(ht);
+            }
+        }
+
         function scrollToEl(el) {
+            resizeEl(el);
             $(document).scrollTop(el.offset().top);
         }
 
         function setCurrEl(el) {
+            if(el && !el.length) return;
             if(currEl) {
                 currEl.removeClass("select");
             }
@@ -29,19 +43,19 @@
             el.addClass("select");
             scrollToEl(el);
         }
-        
+
         function goToNext() {
             if(currEl) {
                 setCurrEl(currEl.next());
             }
         }
-        
+
         function goToPrev() {
             if(currEl) {
                 setCurrEl(currEl.prev());
             }
         }
-        
+
         var divImage = $("#divImage");
         var ps = divImage.find("p");
         ps.on("click", function() {
@@ -49,7 +63,7 @@
         });
 
         setCurrEl($(ps.get(0)));
-        
+
         $(document).keydown(function(e) {
             switch(e.which) {
                 case 37:
