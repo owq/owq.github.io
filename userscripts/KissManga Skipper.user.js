@@ -67,8 +67,6 @@
             setCurrEl($(this));
         });
 
-        setCurrEl($(ps.get(0)));
-
         $(document).keydown(function(e) {
             switch(e.which) {
                 case 37:
@@ -79,5 +77,8 @@
                     break;
             }
         });
+        
+        setCurrEl($(ps.get(0)));
+        resizeEl(divImage);
     });
 })();
