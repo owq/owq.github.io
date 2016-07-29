@@ -4,7 +4,7 @@
 // @description Replace unwieldy dropdowns with datalist
 // @include        *sgx.com*
 // @downloadURL https://owq.github.io/userscripts/select2.user.js
-// @version     1.4
+// @version     1.41
 // @grant       none
 // @run-at document-start
 // ==/UserScript==
@@ -21,6 +21,7 @@ myPopulateCombo = function(cid, jName, aName, item) {
     var name = el[0].name;
     var dlId = id + "dataList";
     var input = $("<input list='"+dlId+"' id='"+id+"' name='"+name+"'>");
+    input.width(el.width());
     el.before(input);
     el.replaceWith("<datalist id='"+dlId+"'></datalist>");
     oldPopCombo(dlId, jName, aName, item);
@@ -30,6 +31,7 @@ myPopulateCombo = function(cid, jName, aName, item) {
             fetchResult();
         }
     });
+    input.focus();
 };
 Object.defineProperty(window, 'populateCombo', {
     get: function() { return myPopulateCombo; },
