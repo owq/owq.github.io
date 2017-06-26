@@ -2,7 +2,7 @@
 // @name        thefinance skipper
 // @namespace   owq
 // @include     *thefinance.sg*
-// @version     1.4
+// @version     1.5
 // @downloadURL https://owq.github.io/userscripts/thefinance.user.js
 // @grant       none
 // @require       http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js
@@ -18,7 +18,7 @@ $(function() {
         var link = art.find("a.post-thumbnail, a.featured-image");
         var titleLink = art.find(".entry-title a")[0];
 
-        function myOnClick() {
+        function myOnClick(cb) {
             var oldTitle = titleLink.innerHTML;
             titleLink.innerHTML += "~";
             //link.prop("innerHTML", "~");
@@ -30,20 +30,28 @@ $(function() {
                 //console.log(finalLink);
                 if(!finalLinkHref) return;
 
-                link.prop('href', finalLinkHref);
+                //link.prop('href', finalLinkHref);
                 //link.prop('innerHTML', "Go to article");
 
-                titleLink.href = finalLinkHref;
-
-                location.href = finalLinkHref;
+                //titleLink.href = finalLinkHref;
                 
                 titleLink.innerHTML = oldTitle;
+                
+                cb(finalLinkHref);
             });
         }
         
         function goLink(e) {
             e.preventDefault();
-            myOnClick();
+            e.stopPropagation();
+            myOnClick(function(link) {
+                if(e.ctrlKey) {
+                    window.open(link);
+                } else {
+                    location.href = link;
+                }
+            });
+            return false;
         }
         
         link.click(goLink);
