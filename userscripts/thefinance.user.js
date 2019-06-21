@@ -24,7 +24,7 @@ $(function() {
 
         var temp = $("<div></div>");
         temp.load(titleLink.href + " .post-wrap", function(){
-            var finalLink = temp.find("a").last();
+            var finalLink = temp.find("a.read-full").last();
             var finalLinkHref = finalLink.attr("href");
             //console.log(finalLink);
             if(!finalLinkHref) return;
