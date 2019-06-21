@@ -2,7 +2,7 @@
 // @name        thefinance skipper
 // @namespace   owq
 // @include     *thefinance.sg*
-// @version     1.6
+// @version     1.6.1
 // @downloadURL https://owq.github.io/userscripts/thefinance.user.js
 // @grant       none
 // @require       http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js
